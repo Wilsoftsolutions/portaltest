@@ -21,13 +21,13 @@
     'version': '15.0.0.2',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'hr_attendance','hr'],
 
     # always loaded
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
-        'views/hr_employee_views.xml',
+        #'views/hr_employee_views.xml',
         'views/hr_attendance_views.xml',
         'views/hr_attendance_rectify_views.xml',
     ],
