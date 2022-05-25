@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Attendance Report",
+    'name': "Attendance Approvals",
 
     'summary': """
-        Hr Attendance Report
+        Attendance Rectification and Approvals
         """,
 
     'description': """
-        Hr Attendance Report
+        Attendance Rectification and Approvals
+        1- Employee Forget to check in check out  will rectify
     """,
 
     'author': "Dynexcel",
@@ -17,19 +18,18 @@
     # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Attendance',
-    'version': '15.0.0.1',
+    'version': '15.0.0.2',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','hr_attendance','de_hr_attendance_approvals'],
+    'depends': ['base'],
 
     # always loaded
     'data': [
-        'wizard/hr_attendance_report_wizard.xml',
-        'report/hr_attendance_report.xml',
-        'views/hr_attendance_views.xml',   
-        'report/hr_attendance_report_template.xml',
+        'security/security.xml',
         'security/ir.model.access.csv',
-        'views/hr_attendance_report_menu.xml',
+        'views/hr_employee_views.xml',
+        'views/hr_attendance_views.xml',
+        'views/hr_attendance_rectify_views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
