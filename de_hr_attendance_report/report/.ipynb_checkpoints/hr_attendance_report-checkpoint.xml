@@ -16,15 +16,29 @@
         <field name="header_spacing">7</field>
         <field name="dpi">90</field>
       </record>
-        <report 
-            id="open_hr_report_wizard_action"
-            string="Attendance Report"
-            model="report.de_hr_attendance_report.attendance_report"
-            report_type="qweb-pdf"
-            file="de_hr_attendance_report.attendance_report"
-            name="de_hr_attendance_report.attendance_report"
-            paperformat="paperformat_attendance_report_landscape"    
-        />
+      
+      <record id="action_report_att_report_ora" model="ir.actions.report">
+            <field name="name">Attendance Report</field>
+            <field name="model">report.de_hr_attendance_report.attendance_report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">report.de_hr_attendance_report.attendance_report</field>
+            <field name="report_file">report.de_hr_attendance_report.attendance_report</field>
+            <field name="print_report_name">'Attendance Report'</field>
+            <field name="binding_model_id" ref="model_report_de_hr_attendance_report_attendance_report"/>
+            <field name="binding_type">report</field>
+        </record>
+      
+      <record id="action_report_att_report_portal" model="ir.actions.report">
+            <field name="name">Attendance Report</field>
+            <field name="model">report.de_hr_attendance_report.attendance_report_portal</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">de_hr_attendance_report.attendance_report_portal</field>
+            <field name="report_file">de_hr_attendance_report.attendance_report_portal</field>
+            <field name="print_report_name">'Attendance Report'</field>
+            <field name="binding_model_id" ref="model_report_de_hr_attendance_report_attendance_report_portal"/>
+            <field name="binding_type">report</field>
+        </record>
+      
       
   </data>
 </odoo>
