@@ -28,22 +28,19 @@
 							type="object"
 							string="Approve"
                             class='oe_highlight'
-							attrs = "{'invisible': ['|',('category_id', '!=', False),('state', '!=', 'submitted')]}"/>
+                            />
                     
                     <button name="action_refuse"
 							type="object"
 							string="Refuse"
                             class='oe_highlight'
-							attrs = "{'invisible': ['|',('category_id', '!=', False),('state', '!=', 'submitted')]}"/>
+							/>
                     
                     <field name="state" widget="statusbar" statusbar_visible="draft,submitted,approved,refused"/>
                 </header>
 
 				<sheet>
-                    <div class="oe_button_box" name="button_box">
-                        <button name="%(action_approval_request_view_rectification_attendance)d" type="action" class="oe_stat_button" icon="fa-check-square-o" string="Approvals" context="{'rectification_id':id,'category_id':category_id}" attrs="{'invisible': [('approval_request_id', '=', False)]}">
-                        </button>      
-                    </div> 
+                    
 					<h1><field name="employee_id" attrs="{'readonly': [('state','!=', 'draft')]}"/></h1>
 
 					<group>
@@ -62,7 +59,6 @@
                             <field name="app_date" invisible='0' readonly='1'/> 
                             <field name="create_date" invisible='1'/> 
 							<field name="approval_request_id" invisible="1" />
-							<field name="category_id" attrs="{'readonly': [('state','!=', 'draft')]}"/>
 							<field name="reason" attrs="{'readonly': [('state','!=', 'draft')]}"/>
 						</group>
 
