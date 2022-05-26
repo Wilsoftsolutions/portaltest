@@ -22,7 +22,7 @@ from odoo.osv.expression import OR
 
 def attendance_page_content(flag = 0):
     emps = request.env['hr.employee'].sudo().search([('user_id','=',http.request.env.context.get('uid'))])
-    managers = emps.manager_id.name
+    managers = emps.parent_id.name
     employee_name = emps
     return {
         'emps': emps,
@@ -34,7 +34,7 @@ def attendance_page_content(flag = 0):
 
 def print_page_content(flag = 0):
     emps = request.env['hr.employee'].sudo().search([('user_id','=',http.request.env.context.get('uid'))])
-    managers = emps.manager_id.name
+    managers = emps.parent_id.name
     employee_name = emps
     return {
         'emps': emps,
@@ -368,7 +368,7 @@ class CustomerPortal(CustomerPortal):
         values = self._attendance_get_page_view_values(expense_sudo, **kw) 
         exist_attendance = request.env['hr.attendance'].sudo().browse(id)
         employees = request.env['hr.employee'].search([('user_id','=',http.request.env.context.get('uid'))])
-        managers = employees.manager_id.name
+        managers = employees.parent_id.name
         employee_name = employees
         checkin_date_in = str(exist_attendance.check_in)
         date_processing_in = checkin_date_in.replace(':', '-').replace('T', '-').split('-')
@@ -396,7 +396,7 @@ class CustomerPortal(CustomerPortal):
         values = self._attendance_get_page_view_values(expense_sudo, **kw) 
         exist_attendance = request.env['hr.attendance'].sudo().browse(id)
         employees = request.env['hr.employee'].search([('user_id','=',http.request.env.context.get('uid'))])
-        managers = employees.manager_id.id
+        managers = employees.parent_id.id
         employee_name = employees
         checkin_date_in = str(exist_attendance.check_in)
         date_processing_in = checkin_date_in.replace(':', '-').replace('T', '-').split('-')
