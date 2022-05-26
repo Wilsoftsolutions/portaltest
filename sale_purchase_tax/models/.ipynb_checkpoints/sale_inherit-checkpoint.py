@@ -12,8 +12,3 @@ class SaleInherit(models.Model):
 			for i in rec.order_line:
 				i.tax_id = rec.partner_id.sale_tax_ids
                 
-    @api.onchange('order_line')
-	def onchange_order_line(self):
-		for rec in self:
-			for i in rec.order_line:
-				i.tax_id = rec.partner_id.sale_tax_ids            
