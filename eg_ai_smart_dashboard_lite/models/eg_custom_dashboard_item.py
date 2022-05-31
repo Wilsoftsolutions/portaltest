@@ -142,11 +142,11 @@ class EgCustomDashboardItem(models.Model):
         res = super(EgCustomDashboardItem, self).create(vals_list)
         return res
 
-    @api.onchange('record_sort_field', 'record_sort', 'record_sort_field', 'filter_domain')
-    def _onchange_filter_record_configuration(self):
-        if self.name != True:
-            raise ValidationError(_(
-                "Only Record limit are supported if you use another operation like sorting, domain so upgrade to pro version!!!"))
+#    @api.onchange('record_sort_field', 'record_sort', 'record_sort_field', 'filter_domain')
+#    def _onchange_filter_record_configuration(self):
+#        if self.name != False:
+#            raise ValidationError(_(
+#                "Only Record limit are supported if you use another operation like sorting, domain so upgrade to pro version!!!"))
 
     @api.onchange('date_record_filter_type')
     def _onchange_date_record_filter_type(self):
