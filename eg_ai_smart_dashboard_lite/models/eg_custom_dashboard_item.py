@@ -148,19 +148,19 @@ class EgCustomDashboardItem(models.Model):
 #            raise ValidationError(_(
 #                "Only Record limit are supported if you use another operation like sorting, domain so upgrade to pro version!!!"))
 
-    @api.onchange('date_record_filter_type')
-    def _onchange_date_record_filter_type(self):
-        if self.date_record_filter_type != False and self.date_record_filter_type not in ['none', 'this_week',
-                                                                                          'this_month']:
-            raise ValidationError(_(
-                "Date Filter Support Only This week and This Month if You use Another filter so upgrade for Dashboard Pro"))
+#    @api.onchange('date_record_filter_type')
+#    def _onchange_date_record_filter_type(self):
+#        if self.date_record_filter_type != False and self.date_record_filter_type not in ['none', 'this_week',
+#                                                                                          'this_month']:
+#            raise ValidationError(_(
+#                "Date Filter Support Only This week and This Month if You use Another filter so upgrade for Dashboard Pro"))
 
-    @api.onchange('is_show_grid', 'is_enable_animation', 'fill_type', 'is_chart_zoom', 'is_reserved_chart',
-                  'is_show_datalabels', 'is_show_legend', 'stork_type', 'name_align_position')
-    def _onchange_chart_theme(self):
-        if self.name != False:
-            raise ValidationError(_(
-                "Only Chart Theme, Color Palette and Distributed Chart are supported if you use another theme configuration so update in Pro Version!!!"))
+#    @api.onchange('is_show_grid', 'is_enable_animation', 'fill_type', 'is_chart_zoom', 'is_reserved_chart',
+#                  'is_show_datalabels', 'is_show_legend', 'stork_type', 'name_align_position')
+#    def _onchange_chart_theme(self):
+#        if self.name != False:
+#            raise ValidationError(_(
+#                "Only Chart Theme, Color Palette and Distributed Chart are supported if you use another theme configuration so update in Pro Version!!!"))
 
     @api.onchange('ir_model_id')
     def _onchange_ir_model_id(self):
