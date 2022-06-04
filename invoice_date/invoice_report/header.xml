@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+       <template id="id_of_the_template">
+
+					<t t-set="company" t-value="user.company_id"/>
+					<div class="header" t-attr-style="report_header_style">
+						<div>
+							<img t-if="company.logo" t-att-src="image_data_uri(company.logo)"/>
+						</div>
+						<p>This is Header</p>
+					</div>
+					<div class="footer">
+						<p>This is footer</p>
+					</div>
+				</template>
+
+
+    </data>
+</odoo>
