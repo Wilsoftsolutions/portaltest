@@ -58,68 +58,81 @@
                                         <td>
                                             <span t-esc="variant['color_name']"/>
                                         </td>
-                                        <td>Uom</td>
+                                        <td>
+                                            <span t-esc="variant['uom']"/>
+                                        </td>
                                         <td style="padding-left: 0px!important;">
-                                            <table width="100%" class="data_table_inside">
-                                                <t t-set="total_qty" t-value="0"/>
-                                                <t t-foreach="variant['sizes']" t-as="size">
-                                                    <tbody>
-                                                        <tr>
+                                            <t t-if="variant['color_name'] != '-'">
+                                                <table width="100%" class="data_table_inside">
+                                                    <t t-set="total_qty" t-value="0"/>
+                                                    <t t-foreach="variant['sizes']" t-as="size">
+                                                        <tbody>
+                                                            <tr>
 
-                                                            <td width="12.5%">
-                                                                <span t-esc="size['39']"/>
-                                                                <span t-set="total_qty"
-                                                                      t-value="(total_qty + size['39'])"/>
-                                                            </td>
-                                                            <td width="12.5%">
-                                                                <span t-esc="size['40']"/>
-                                                                <span t-set="total_qty"
-                                                                      t-value="(total_qty + size['40'])"/>
-                                                            </td>
-                                                            <td width="12.5%">
-                                                                <span t-esc="size['41']"/>
-                                                                <span t-set="total_qty"
-                                                                      t-value="(total_qty + size['41'])"/>
-                                                            </td>
-                                                            <td width="12.5%">
-                                                                <span t-esc="size['42']"/>
-                                                                <span t-set="total_qty"
-                                                                      t-value="(total_qty + size['42'])"/>
-                                                            </td>
-                                                            <td width="12.5%">
-                                                                <span t-esc="size['43']"/>
-                                                                <span t-set="total_qty"
-                                                                      t-value="(total_qty + size['43'])"/>
-                                                            </td>
-                                                            <td width="12.5%">
-                                                                <span t-esc="size['44']"/>
-                                                                <span t-set="total_qty"
-                                                                      t-value="(total_qty + size['44'])"/>
-                                                            </td>
-                                                            <td width="12.5%">
-                                                                <span t-esc="size['45']"/>
-                                                                <span t-set="total_qty"
-                                                                      t-value="(total_qty + size['45'])"/>
-                                                            </td>
-                                                            <td width="12.5%">
-                                                                <span t-esc="size['46']"/>
-                                                                <span t-set="total_qty"
-                                                                      t-value="(total_qty + size['46'])"/>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </t>
-                                            </table>
+                                                                <td width="12.5%">
+                                                                    <span t-esc="size['39']"/>
+                                                                    <span t-set="total_qty"
+                                                                          t-value="(total_qty + size['39'])"/>
+                                                                </td>
+                                                                <td width="12.5%">
+                                                                    <span t-esc="size['40']"/>
+                                                                    <span t-set="total_qty"
+                                                                          t-value="(total_qty + size['40'])"/>
+                                                                </td>
+                                                                <td width="12.5%">
+                                                                    <span t-esc="size['41']"/>
+                                                                    <span t-set="total_qty"
+                                                                          t-value="(total_qty + size['41'])"/>
+                                                                </td>
+                                                                <td width="12.5%">
+                                                                    <span t-esc="size['42']"/>
+                                                                    <span t-set="total_qty"
+                                                                          t-value="(total_qty + size['42'])"/>
+                                                                </td>
+                                                                <td width="12.5%">
+                                                                    <span t-esc="size['43']"/>
+                                                                    <span t-set="total_qty"
+                                                                          t-value="(total_qty + size['43'])"/>
+                                                                </td>
+                                                                <td width="12.5%">
+                                                                    <span t-esc="size['44']"/>
+                                                                    <span t-set="total_qty"
+                                                                          t-value="(total_qty + size['44'])"/>
+                                                                </td>
+                                                                <td width="12.5%">
+                                                                    <span t-esc="size['45']"/>
+                                                                    <span t-set="total_qty"
+                                                                          t-value="(total_qty + size['45'])"/>
+                                                                </td>
+                                                                <td width="12.5%">
+                                                                    <span t-esc="size['46']"/>
+                                                                    <span t-set="total_qty"
+                                                                          t-value="(total_qty + size['46'])"/>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </t>
+                                                </table>
+                                            </t>
+                                            <t t-else="">
+                                                <span style="padding-left: 10px;">No size set</span>
+                                            </t>
                                         </td>
                                         <td>
-                                            <span t-esc="total_qty"/>
+                                            <t t-if="variant['color_name'] != '-'">
+                                                <span t-esc="total_qty"/>
+                                            </t>
+                                            <t t-else="">
+                                                <span t-set="total_qty" t-value="variant['line_total_qty']"/>
+                                                <span t-esc="total_qty"/>
+                                            </t>
                                         </td>
                                         <td>
                                             <span t-esc="variant['retail_price']"/>
                                         </td>
                                         <td>
                                             <t t-set="total_amount" t-value="variant['retail_price'] * total_qty"/>
-                                            <span t-esc="total_amount"/>
+                                            <span t-esc="total_amount" t-options='{"widget": "float", "precision": 2}'/>
                                         </td>
                                     </tr>
                                 </tbody>
