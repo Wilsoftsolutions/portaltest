@@ -16,10 +16,7 @@
                         <div class="col-6" style="border:1px solid black; margin-left:-10px">
                             <div class="row">
                                 <div class="col-3">
-                                    <span>
-                                        <img src="/invoice_date/static/274718224_3254234354857449_7899967545692053477_n.jpg"
-                                             width="100%" height="135"/>
-                                    </span>
+                                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="height:135px;" width="100%"/>
                                 </div>
                                 <div class="col-9">
                                     <span>

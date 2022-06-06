@@ -182,13 +182,13 @@
 									<td colspan="6" style="border:none; border-color:none"></td>
 									<td colspan="" style="border:1px solid #e3e8e5;">Total Value</td>
 									<td colspan="" style="border:1px solid #e3e8e5;">
-										<span t-esc="total_retail_price"/>
+										<span t-esc="o.amount_untaxed"/>
 									</td>
 								</tr>
 								<tr style="border:1px solid white; margin-top:10px">
 									<td colspan="6" style="border:none; border-color:none"></td>
 									<td colspan="" style="border:1px solid #e3e8e5;">Total WS Value</td>
-									<td colspan="" style=" border:1px solid #e3e8e5;">09789</td>
+									<td colspan="" style=" border:1px solid #e3e8e5;">------</td>
 								</tr>
 								<tr style="border:1px solid white; margin-top:10px">
 									<td colspan="6" style="border:none; border-color:none;"></td>
@@ -201,7 +201,7 @@
 								<tr style="border:1px solid white; margin-top:10px">
 									<td colspan="6" style="border:none; border-color:none"></td>
 									<td colspan="" style="border:1px solid #e3e8e5;">Further Tax 3%</td>
-									<td colspan="" style="border:1px solid #e3e8e5;">09789</td>
+									<td colspan="" style="border:1px solid #e3e8e5;">------</td>
 								</tr>
 								<tr style="border:1px solid white; margin-top:10px;padding:3">
 									<td colspan="6" style="border:none; border-color:none"></td>
