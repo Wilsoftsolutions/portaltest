@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <template id="id_of_the_template">
+    <data><template id="jkgjh">
             <t t-set="company" t-value="user.company_id"/>
 
             <!--					<div class="header" >-->
@@ -11,9 +10,9 @@
                 <h3 class="text-center"><b>Sale Invoice</b></h3>
 
                 <!--                       second section of the report-->
-                <div class="container-fluid">
+                <div class="container">
                     <div class="row">
-                        <div class="col-6" style="border:1px solid black; margin-left:-10px">
+                        <div class="col-6" style="border:1px solid black; margin-left:0px">
                             <div class="row">
                                 <div class="col-3">
                                     <span>
@@ -30,7 +29,7 @@
                                             Kot Lakhpat, Lahore, Punjab
                                             54700
                                         </p>
-                                        <p style="font-size:13px; margin-top:-10px"><b>Phone :</b>Tel # <t t-esc="company.phone"/>
+                                        <p style="font-size:11px; margin-top:-10px"><b>Phone :</b>Tel # <t t-esc="company.phone"/>
                                             <br/>
                                             <b>Address :</b><t t-esc="company.street"/>
                                             <br/>
@@ -46,11 +45,11 @@
                             </div>
                         </div>
                         <div class="col-4 offset-2 text-right">
-                            <p style="font-size:13px;">
+                            <p style="font-size:11px">
                                 <b>Printed By:</b>
                                 <span style="border-bottom:1px solid black; margin-left:10px"><t t-esc="user.name"/> </span>
                             </p>
-                            <p style="font-size:13px;">
+                            <p style="font-size:11px">
                                 <b>Printed On:</b>
                                 <span style="border-bottom:1px solid black; margin-left:10px"><t t-esc="date"/></span>
                             </p>
@@ -58,7 +57,7 @@
                     </div>
                     <div class="col-7" style="border:1px solid black; padding:9px; margin-top:9px; margin-left:-15px">
                         <table style="font-size:13px; margin-top:9px">
-                            <tr>
+                            <tr style="font-size:11px">
 
                                 <td>Customer:</td>
                                 <td style="">
@@ -68,7 +67,7 @@
                                 </td>
                             </tr>
 
-                            <tr>
+                            <tr style="font-size:11px">
                                 <td>Address:</td>
                                 <td style="">
                                     <div style="border-bottom:1px solid black; width:550px; margin-left:20px">
@@ -77,7 +76,7 @@
                                 </td>
                             </tr>
 
-                            <tr>
+                            <tr style="font-size:11px">
                                 <td>Tel:</td>
                                 <td style="">
                                     <div style="border-bottom:1px solid black; width:550px; margin-left:20px">
@@ -86,27 +85,27 @@
                                 </td>
                             </tr>
 
-                            <tr>
+                            <tr style="font-size:11px">
                                 <td>STN/CNIC:</td>
-                                <td style="">
+                                <td>
                                     <div style="border-bottom:1px solid black; width:550px; margin-left:20px">
                                         <span style="margin-left:20px">9867867878</span>
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr style="font-size:11px">
                                 <td>SRTN:</td>
-                                <td style="">
+                                <td>
                                     <div style="border-bottom:1px solid black; width:550px; margin-left:20px">
                                         <span style="margin-left:20px">097559409</span>
                                     </div>
                                 </td>
                             </tr>
                             <tr style="font-size:11px">
-                                <td>Ship/ Delivery:</td>
-                                <td style="">
+                                <td>Ship/Delivery:</td>
+                                <td>
                                     <div style="border-bottom:1px solid black; width:550px; margin-left:20px">
-                                        <span style="margin-left:20px">Shop one</span>
+                                        <span style="margin-left:20px">Shop one at johar</span>
                                     </div>
                                 </td>
                             </tr>
@@ -118,6 +117,7 @@
             </div>
 
             <div class="footer" style="margin-top:-90px">
+
             </div>
         </template>
 
