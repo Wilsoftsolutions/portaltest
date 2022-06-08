@@ -10,6 +10,9 @@
 					<style>
 						.data_table_body thead td {text-align: center;}
 						.row_body td {padding-left: 10px;}
+						.tb_border{
+						border-bottom : 1px solid lightgray;
+						}
 
 					</style>
 					<t t-foreach="docs" t-as="o">
@@ -19,65 +22,54 @@
 							<div class="container">
 								<div class="col-7"
 									 style="border:1px solid lightgray; padding:9px; margin-top:9px; margin-left:-15px">
-									<table style="font-size:13px; margin-top:9px">
+									<table style="font-size:13px; margin-top:9px" width="100%">
 										<tr style="font-size:11px">
 
 											<td>Customer:</td>
-											<td style="">
-												<div style="border-bottom:1px solid lightgray; width:383px; margin-left:20px">
-													<span style="margin-left:20px; color:black">
-														<t t-esc="c_name"/>
-													</span>
-												</div>
+											<td class="tb_border">
+
+												<span style="margin-left:20px; color:black">
+													<t t-esc="c_name"/>
+												</span>
 											</td>
 										</tr>
 
 										<tr style="font-size:11px">
 											<td>Address:</td>
-											<td style="">
-												<div style="border-bottom:1px solid lightgray;  width:383px; margin-left:20px">
-													<span style="margin-left:20px">
-														<t t-esc="address"/>
-													</span>
-												</div>
+											<td class="tb_border">
+												<span style="margin-left:20px">
+													<t t-esc="address"/>
+												</span>
 											</td>
 										</tr>
 
 										<tr style="font-size:11px">
 											<td>Tel:</td>
-											<td style="">
-												<div style="border-bottom:1px solid lightgray; width:383px; margin-left:20px">
-													<span style="margin-left:20px">
-														<t t-esc="phone"/>
-													</span>
-												</div>
+											<td class="tb_border">
+												<span style="margin-left:20px">
+													<t t-esc="phone"/>
+												</span>
 											</td>
 										</tr>
 
 										<tr style="font-size:11px">
 											<td>STN/CNIC:</td>
-											<td>
-												<div style="border-bottom:1px solid lightgray;  width:383px; margin-left:20px">
-													<span style="margin-left:20px">9867867878</span>
-												</div>
+											<td class="tb_border">
+												<span style="margin-left:20px">9867867878</span>
 											</td>
 										</tr>
 										<tr style="font-size:11px">
 											<td>SRTN:</td>
-											<td>
-												<div style="border-bottom:1px solid lightgray;  width:383px; margin-left:20px">
-													<span style="margin-left:20px">
-														<t t-esc="o.partner_id.vat"/>
-													</span>
-												</div>
+											<td class="tb_border">
+												<span style="margin-left:20px">
+													<t t-esc="o.partner_id.vat"/>
+												</span>
 											</td>
 										</tr>
 										<tr style="font-size:11px">
 											<td>Ship/Delivery:</td>
-											<td>
-												<div style="border-bottom:1px solid lightgray; width:383px; margin-left:20px">
-													<span style="margin-left:20px">Shop one at johar</span>
-												</div>
+											<td class="tb_border">
+												<span style="margin-left:20px">Shop one at johar</span>
 											</td>
 										</tr>
 
@@ -202,6 +194,8 @@
 											<td>
 												<t t-if="variant['color_name'] != '-'">
 													<span t-esc="total_qty"/>
+													<span t-set="total_retail_price"
+														  t-value="total_retail_price + (variant['retail_price']* total_qty)"/>
 												</t>
 												<t t-else="">
 													<span t-set="total_qty" t-value="variant['line_total_qty']"/>
@@ -219,8 +213,7 @@
 												<span t-esc="variant['retail_price']"/>
 												<span t-set="count_disc"
 													  t-value="count_disc + variant['retail_price']"/>
-												<span t-set="total_retail_price"
-													  t-value="total_retail_price + (variant['retail_price']* variant['line_total_qty'])"/>
+
 											</td>
 
 											<td style="text-align:right">
@@ -238,7 +231,8 @@
 									<td colspan="6" style="border:none; border-color:none"></td>
 									<td colspan="" style="border:1px solid #e3e8e5;">Total Value</td>
 									<td colspan="" style="border:1px solid #e3e8e5;text-align:right">
-										<span t-esc="total_retail_price"/>
+										<span t-esc="total_retail_price"
+											  t-options='{"widget": "integer", "precision": 2}'/>
 									</td>
 								</tr>
 								<!--  <tr style="border:1px solid white; margin-top:10px">
@@ -327,7 +321,7 @@
 											<td style="">
 												<div style="border-bottom:1px solid lightgray; width:550px; margin-left:20px">
 													<span style="margin-left:20px">8329185 , 15897919205503 and
-														01160010553659
+														01160010553569
 													</span>
 												</div>
 											</td>

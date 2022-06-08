@@ -11,13 +11,16 @@ class delivery_report(models.Model):
             variant_values = []
             customer = []
             for i in rec.move_ids_without_package:
-                customer.append({
-                    'c_name': i.partner_id.name,
-                    'address': i.partner_id.street,
-                    'phone': i.partner_id.phone,
-                    'user': self.env.user.name,
-                    'date': rec.scheduled_date,
-                })
+                # customer.append({
+                #     'c_name': i.partner_id.name,
+                #     'address': i.partner_id.street,
+                #     'phone': i.partner_id.phone,
+                #     'user': self.env.user.name,
+                #     'date': rec.scheduled_date,
+                #     'origin': rec.origin,
+                #     'name': rec.name,
+                #
+                # })
                 try:
                     if i.product_id.product_tmpl_id:
                         product_attribute = i.product_id.product_template_attribute_value_ids
@@ -54,12 +57,13 @@ class delivery_report(models.Model):
                             new_dict['sizes'][0][size.name] += i.product_uom_qty
                             variant_values.append(new_dict)
                         else:
-                            dict_exist['sizes'][0][size.name] += i.quantity
+                            dict_exist['sizes'][0][size.name] += i.product_uom_qty
 
                     else:
                         self.create_line_without_pickage(variant_values, i)
 
-                except Exception:
+                except Exception as e:
+                    o = e
                     self.create_line_without_pickage(variant_values, i)
 
         return {
@@ -72,6 +76,9 @@ class delivery_report(models.Model):
             'address': rec.partner_id.street,
             'phone': rec.partner_id.phone,
             'variant_values': variant_values,
+            'origin': rec.origin,
+            'name': rec.name,
+
         }
 
     def create_line_without_pickage(self, variant_values=None, i=None):
