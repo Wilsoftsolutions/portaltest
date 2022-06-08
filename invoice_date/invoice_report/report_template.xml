@@ -8,6 +8,7 @@
 
 
 				<t t-call="web.internal_layout">
+
 					<t t-foreach="doc" t-as="o">
 
 						<!--                     <t t-call="invoice_date.id_of_the_template"/>-->
@@ -70,9 +71,14 @@
 								<t t-set="sale_tax" t-value="0"/>
 
 								<t t-set="count_disc" t-value="0"/>
+								<t t-set="total_values" t-value="0"/>
+
 								<t t-foreach="variant_values" t-as="variant">
+
 									<tbody class="data_table_body">
 										<t t-set="count" t-value="count+1"/>
+
+
 										<tr class="row_body">
 											<td>
 												<span t-esc="count"/>
@@ -91,6 +97,7 @@
 													<table width="100%" class="data_table_inside">
 														<t t-set="total_qty" t-value="0"/>
 														<t t-foreach="variant['sizes']" t-as="size">
+
 															<tbody>
 																<tr>
 
@@ -146,6 +153,8 @@
 											<td>
 												<t t-if="variant['color_name'] != '-'">
 													<span t-esc="total_qty"/>
+													<t t-set="total_values"
+													   t-value="total_values + (variant['retail_price']* total_qty)"/>
 												</t>
 												<t t-else="">
 													<span t-set="total_qty" t-value="variant['line_total_qty']"/>
@@ -164,7 +173,9 @@
 												<span t-set="count_disc"
 													  t-value="count_disc + variant['retail_price']"/>
 												<span t-set="total_retail_price"
-													  t-value="total_retail_price + (variant['retail_price']* variant['line_total_qty'])"/>
+													  t-value="total_retail_price + (variant['retail_price']* variant['line_total_qty'])"
+													   t-options='{"widget": "float", "precision": 2}'/>
+
 											</td>
 
 											<td>
@@ -174,116 +185,141 @@
 											</td>
 										</tr>
 									</tbody>
+
+
 								</t>
 
-								<!--								&lt;!&ndash;calculation summary of the report&ndash;&gt;-->
+								<!--calculation summary of the report-->
 
-								<!--								<tr style="border:1px solid white; margin-top:40px padding-top:5px">-->
-								<!--									<td colspan="6" style="border:none; border-color:none"></td>-->
-								<!--									<td colspan="" style="border:1px solid #e3e8e5;">Total Value</td>-->
-								<!--									<td colspan="" style="border:1px solid #e3e8e5;">-->
-								<!--										<span t-esc="o.amount_untaxed"/>-->
-								<!--									</td>-->
-								<!--								</tr>-->
-								<!--								<tr style="border:1px solid white; margin-top:10px">-->
-								<!--									<td colspan="6" style="border:none; border-color:none"></td>-->
-								<!--									<td colspan="" style="border:1px solid #e3e8e5;">Total WS Value</td>-->
-								<!--									<td colspan="" style=" border:1px solid #e3e8e5;">-->
-								<!--										&#45;&#45;&#45;&#45;&#45;&#45;-->
-								<!--									</td>-->
-								<!--								</tr>-->
-								<!--								<tr style="border:1px solid white; margin-top:10px">-->
-								<!--									<td colspan="6" style="border:none; border-color:none;"></td>-->
-								<!--									<td colspan="" style="border:1px solid #e3e8e5;">Sales Tax 17%</td>-->
-								<!--									<td colspan="" style="border:1px solid #e3e8e5;">-->
-								<!--										<span t-esc="sale_tax"/>-->
-								<!--									</td>-->
-								<!--								</tr>-->
 
-								<!--								<tr style="border:1px solid white; margin-top:10px">-->
-								<!--									<td colspan="6" style="border:none; border-color:none"></td>-->
-								<!--									<td colspan="" style="border:1px solid #e3e8e5;">Further Tax 3%</td>-->
-								<!--									<td colspan="" style="border:1px solid #e3e8e5;">&#45;&#45;&#45;&#45;&#45;&#45;</td>-->
-								<!--								</tr>-->
-								<!--								<tr style="border:1px solid white; margin-top:10px;padding:3">-->
-								<!--									<td colspan="6" style="border:none; border-color:none"></td>-->
-								<!--									<td colspan="" style="border:1px solid #e3e8e5;padding:3">Net Value</td>-->
-								<!--									<td colspan="" style="border:1px solid #e3e8e5;padding:3">-->
-								<!--										<span t-esc="net_amount"/>-->
-								<!--									</td>-->
-								<!--								</tr>-->
+								<tr style="border:1px solid white; margin-top:40px padding-top:5px">
+									<td colspan="6" style="border:none; border-color:none"></td>
+									<td colspan="" style="border:1px solid #e3e8e5;">Total Value</td>
+									<td colspan="" style="border:1px solid #e3e8e5;">
+
+										<span t-esc="total_values"  t-options='{"widget": "float", "precision": 2}'/>
+									</td>
+								</tr>
+								<tr style="border:1px solid white; margin-top:10px">
+									<td colspan="6" style="border:none; border-color:none"></td>
+									<td colspan="" style="border:1px solid #e3e8e5;">Total WS Value</td>
+									<td colspan="" style=" border:1px solid #e3e8e5;">
+										<span t-esc="o.amount_untaxed"  t-options='{"widget": "float", "precision": 2}'/>
+									</td>
+								</tr>
+
+								<tr style="border:1px solid white; margin-top:10px">
+									<td colspan="6" style="border:none; border-color:none;"></td>
+									<t t-foreach="o.invoice_line_ids.tax_ids" t-as="tax">
+										<t t-if="tax.name=='Sales Tax 17%'">
+
+
+											<td colspan="" style="border:1px solid #e3e8e5;">Sales Tax 17%</td>
+
+											<td colspan="" style="border:1px solid #e3e8e5;">
+												<span t-esc="tax.amount"/>
+
+											</td>
+										</t>
+									</t>
+								</tr>
+
+								<tr style="border:1px solid white; margin-top:10px">
+
+
+									<td colspan="6" style="border:none; border-color:none"></td>
+									<t t-foreach="o.invoice_line_ids.tax_ids" t-as="taxes">
+										<t t-if="taxes.name=='Further Tax 3%'">
+											<td colspan="" style="border:1px solid #e3e8e5;">Further Tax 3%</td>
+
+
+											<td colspan="" style="border:1px solid #e3e8e5;">
+												<span t-esc="taxes.amount"/>
+
+											</td>
+										</t>
+									</t>
+								</tr>
+
+								<tr style="border:1px solid white; margin-top:10px;padding:3">
+									<td colspan="6" style="border:none; border-color:none"></td>
+									<td colspan="" style="border:1px solid #e3e8e5;padding:3">Net Value</td>
+									<td colspan="" style="border:1px solid #e3e8e5;padding:3">
+										<span t-esc="o.amount_total"  t-options='{"widget": "float", "precision": 2}'/>
+									</td>
+								</tr>
 
 
 							</table>
-							<div class="clearfix">
-								<div id="total" class="row">
-									<div t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ml-auto">
-										<table class="table table-sm" style="page-break-inside: avoid;">
-											<tr>
-												<td>
-													<strong>Total Value</strong>
-												</td>
-												<td class="text-right">
-													<span />
-												</td>
+							<!--							<div class="clearfix">-->
+							<!--								<div id="total" class="row">-->
+							<!--									<div t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ml-auto">-->
+							<!--										<table class="table table-sm" style="page-break-inside: avoid;">-->
+							<!--											<tr>-->
+							<!--												<td>-->
+							<!--													<strong>Total Value</strong>-->
+							<!--												</td>-->
+							<!--												<td class="text-right">-->
+							<!--													<span  t-options='{"widget": "integer", "precision": 2}'/>-->
+							<!--												</td>-->
 
-											</tr>
+							<!--											</tr>-->
 
-											<!--Tax totals-->
-											<t t-set="tax_totals" t-value="json.loads(o.tax_totals_json)"/>
-											<t t-call="account.document_tax_totals"/>
+							<!--											&lt;!&ndash;Tax totals&ndash;&gt;-->
+							<!--											<t t-set="tax_totals" t-value="json.loads(o.tax_totals_json)"/>-->
+							<!--											<t t-call="account.document_tax_totals"/>-->
 
-											<!--Payments-->
-											<t t-if="print_with_payments">
-												<t t-if="o.payment_state != 'invoicing_legacy'">
-													<t t-set="payments_vals"
-													   t-value="o.sudo()._get_reconciled_info_JSON_values()"/>
-													<t t-foreach="payments_vals" t-as="payment_vals">
-														<tr>
-															<td>
-																<i class="oe_form_field text-right oe_payment_label">
-																	Paid on
-																	<t t-esc="payment_vals['date']"
-																	   t-options='{"widget": "date"}'/>
-																</i>
-															</td>
-															<td class="text-right">
-																<span t-esc="payment_vals['amount']"
-																	  t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-															</td>
-														</tr>
-													</t>
-													<t t-if="len(payments_vals) > 0">
-														<tr class="border-black">
-															<td>
-																<strong>Amount Due</strong>
-															</td>
-															<td class="text-right">
-																<span t-field="o.amount_residual"/>
-															</td>
-														</tr>
-													</t>
-												</t>
-											</t>
-										</table>
-									</div>
-								</div>
-							</div>
+							<!--											&lt;!&ndash;Payments&ndash;&gt;-->
+							<!--											<t t-if="print_with_payments">-->
+							<!--												<t t-if="o.payment_state != 'invoicing_legacy'">-->
+							<!--													<t t-set="payments_vals"-->
+							<!--													   t-value="o.sudo()._get_reconciled_info_JSON_values()"/>-->
+							<!--													<t t-foreach="payments_vals" t-as="payment_vals">-->
+							<!--														<tr>-->
+							<!--															<td>-->
+							<!--																<i class="oe_form_field text-right oe_payment_label">-->
+							<!--																	Paid on-->
+							<!--																	<t t-esc="payment_vals['date']"-->
+							<!--																	   t-options='{"widget": "date"}'/>-->
+							<!--																</i>-->
+							<!--															</td>-->
+							<!--															<td class="text-right">-->
+							<!--																<span t-esc="payment_vals['amount']"-->
+							<!--																	  t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>-->
+							<!--															</td>-->
+							<!--														</tr>-->
+							<!--													</t>-->
+							<!--													<t t-if="len(payments_vals) > 0">-->
+							<!--														<tr class="border-black">-->
+							<!--															<td>-->
+							<!--																<strong>Amount Due</strong>-->
+							<!--															</td>-->
+							<!--															<td class="text-right">-->
+							<!--																<span t-field="o.amount_residual" t-options='{"widget": "integer", "precision": 2}'/>-->
+							<!--															</td>-->
+							<!--														</tr>-->
+							<!--													</t>-->
+							<!--												</t>-->
+							<!--											</t>-->
+							<!--										</table>-->
+							<!--									</div>-->
+							<!--								</div>-->
+							<!--							</div>-->
 						</div>
-						<p style="border-bottom:1px solid black; margin-top:90px; margin-left:390px; font-size:13px">
+						<p style="border-bottom:1px solid lightgray; margin-top:90px; margin-left:390px; font-size:13px">
 							<t t-esc="o.num_words"/>
 						</p>
 
 						<div class="container">
 							<div class="row">
-								<div class="col-12" style="border:1px solid black; margin-left:-10px">
+								<div class="col-12" style="border:1px solid lightgray; margin-left:-10px">
 									<div class="row">
 										<table style="font-size:13px; margin-top:9px; margin-left:200px">
 											<tr>
 
 												<td>Account Name:</td>
 												<td style="">
-													<div style="border-bottom:1px solid black; width:550px; margin-left:20px">
+													<div style="border-bottom:1px solid lightgray; width:550px; margin-left:20px">
 														<span style="margin-left:20px; color:black">GLANZ DESIGN
 															(SMC-PRIVATE) LIMITED
 														</span>
@@ -294,7 +330,7 @@
 											<tr>
 												<td>Banks Name:</td>
 												<td style="">
-													<div style="border-bottom:1px solid black; width:550px; margin-left:20px">
+													<div style="border-bottom:1px solid lightgray; width:550px; margin-left:20px">
 														<span style="margin-left:20px">Soneri , HBL and Meezan Bank
 															Limited
 														</span>
@@ -305,7 +341,7 @@
 											<tr>
 												<td>Bank Address:</td>
 												<td style="">
-													<div style="border-bottom:1px solid black; width:550px; margin-left:20px">
+													<div style="border-bottom:1px solid lightgray; width:550px; margin-left:20px">
 														<span style="margin-left:20px">Lahore , Lahore and Tricon Plaza
 															Gulberg Lahore
 														</span>
@@ -316,7 +352,7 @@
 											<tr>
 												<td>Currency Of Account ::</td>
 												<td style="">
-													<div style="border-bottom:1px solid black; width:550px; margin-left:20px">
+													<div style="border-bottom:1px solid lightgray; width:550px; margin-left:20px">
 														<span style="margin-left:20px">PKR</span>
 													</div>
 												</td>
@@ -324,9 +360,9 @@
 											<tr>
 												<td>Account Numbers IBNA :</td>
 												<td style="">
-													<div style="border-bottom:1px solid black; width:550px; margin-left:20px">
+													<div style="border-bottom:1px solid lightgray; width:550px; margin-left:20px">
 														<span style="margin-left:20px">8329185 , 15897919205503 and
-															01160010553659
+															01160010553569
 														</span>
 													</div>
 												</td>
@@ -347,7 +383,7 @@
 								</div>
 
 							</div>
-							<div class="col-4 mt-2" style="border:1px solid black">
+							<div class="col-4 mt-2" style="border:1px solid lightgray">
 								<p>
 									Head Office: 124/1, Industrial Estate Kot
 									<br/>

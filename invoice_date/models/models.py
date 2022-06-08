@@ -85,6 +85,8 @@ class InvoiceInheritReport(models.AbstractModel):
             'c_name': rec.partner_id.name,
             'user': self.env.user.name,
             'date': rec.invoice_date,
+            'name': rec.name,
+            'invoice_origin': rec.invoice_origin,
             'address': rec.partner_id.street,
             'phone': rec.partner_id.phone,
             'variant_values': variant_values,
