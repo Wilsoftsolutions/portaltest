@@ -174,7 +174,7 @@
 													  t-value="count_disc + variant['retail_price']"/>
 												<span t-set="total_retail_price"
 													  t-value="total_retail_price + (variant['retail_price']* variant['line_total_qty'])"
-													   t-options='{"widget": "float", "precision": 2}'/>
+													  t-options='{"widget": "float", "precision": 2}'/>
 
 											</td>
 
@@ -197,55 +197,54 @@
 									<td colspan="" style="border:1px solid #e3e8e5;">Total Value</td>
 									<td colspan="" style="border:1px solid #e3e8e5;">
 
-										<span t-esc="total_values"  t-options='{"widget": "float", "precision": 2}'/>
+										<span t-esc="total_values" t-options='{"widget": "float", "precision": 2}'/>
 									</td>
 								</tr>
 								<tr style="border:1px solid white; margin-top:10px">
 									<td colspan="6" style="border:none; border-color:none"></td>
 									<td colspan="" style="border:1px solid #e3e8e5;">Total WS Value</td>
 									<td colspan="" style=" border:1px solid #e3e8e5;">
-										<span t-esc="o.amount_untaxed"  t-options='{"widget": "float", "precision": 2}'/>
+										<span t-esc="o.amount_untaxed" t-options='{"widget": "float", "precision": 2}'/>
 									</td>
 								</tr>
+								<t t-foreach="o.invoice_line_ids.tax_ids" t-as="tax">
 
-								<tr style="border:1px solid white; margin-top:10px">
-									<td colspan="6" style="border:none; border-color:none;"></td>
-									<t t-foreach="o.invoice_line_ids.tax_ids" t-as="tax">
-										<t t-if="tax.name=='Sales Tax 17%'">
+									<tr style="border:1px solid white; margin-top:10px">
+										<td colspan="6" style="border:none; border-color:none;"></td>
+										<td colspan="" style="border:1px solid #e3e8e5;">
+											<span t-esc="tax.name"/>
+										</td>
 
+										<td colspan="" style="border:1px solid #e3e8e5;">
+											<span t-esc="tax.amount"/>
 
-											<td colspan="" style="border:1px solid #e3e8e5;">Sales Tax 17%</td>
+										</td>
 
-											<td colspan="" style="border:1px solid #e3e8e5;">
-												<span t-esc="tax.amount"/>
+									</tr>
+								</t>
 
-											</td>
-										</t>
-									</t>
-								</tr>
-
-								<tr style="border:1px solid white; margin-top:10px">
-
-
-									<td colspan="6" style="border:none; border-color:none"></td>
-									<t t-foreach="o.invoice_line_ids.tax_ids" t-as="taxes">
-										<t t-if="taxes.name=='Further Tax 3%'">
-											<td colspan="" style="border:1px solid #e3e8e5;">Further Tax 3%</td>
+								<!--								<tr style="border:1px solid white; margin-top:10px">-->
 
 
-											<td colspan="" style="border:1px solid #e3e8e5;">
-												<span t-esc="taxes.amount"/>
+								<!--									<td colspan="6" style="border:none; border-color:none"></td>-->
+								<!--									<t t-foreach="o.invoice_line_ids.tax_ids" t-as="taxes">-->
+								<!--										<t t-if="taxes.name=='Further Tax 3%'">-->
+								<!--											<td colspan="" style="border:1px solid #e3e8e5;">Further Tax 3%</td>-->
 
-											</td>
-										</t>
-									</t>
-								</tr>
+
+								<!--											<td colspan="" style="border:1px solid #e3e8e5;">-->
+								<!--												<span t-esc="taxes.amount"/>-->
+
+								<!--											</td>-->
+								<!--										</t>-->
+								<!--									</t>-->
+								<!--								</tr>-->
 
 								<tr style="border:1px solid white; margin-top:10px;padding:3">
 									<td colspan="6" style="border:none; border-color:none"></td>
 									<td colspan="" style="border:1px solid #e3e8e5;padding:3">Net Value</td>
 									<td colspan="" style="border:1px solid #e3e8e5;padding:3">
-										<span t-esc="o.amount_total"  t-options='{"widget": "float", "precision": 2}'/>
+										<span t-esc="o.amount_total" t-options='{"widget": "float", "precision": 2}'/>
 									</td>
 								</tr>
 
