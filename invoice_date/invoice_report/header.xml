@@ -47,7 +47,9 @@
 											<b>NTN :</b>
 											<t t-esc="company.vat"/>
 											<br/>
-											<b>SRTN :</b>3277876227804
+											<b>SRTN :</b>
+											<t t-esc="company.partner_id.x_studio_stn"/>
+
 											<br/>
 										</p>
 									</span>
@@ -122,19 +124,25 @@
 								<tr>
 									<td width="15%">STN/CNIC:</td>
 									<td class="tb_border" width="85%">
-										<span style="margin-left:5px">9867867878</span>
+										<span style="margin-left:5px">
+											<t t-esc="stn_cnic"/>
+
+										</span>
 									</td>
 								</tr>
 								<tr>
 									<td width="15%">SRTN:</td>
 									<td class="tb_border" width="85%">
-										<span style="margin-left:5px">097559409</span>
+										<span style="margin-left:5px">
+											<t t-esc="stn"/>
+
+										</span>
 									</td>
 								</tr>
 								<tr style="font-size:11px">
 									<td width="15%">Ship/ Delivery:</td>
 									<td class="tb_border" width="85%">
-										<span style="margin-left:5px">Shop one</span>
+										<span style="margin-left:5px"></span>
 									</td>
 								</tr>
 

@@ -10,10 +10,9 @@
 					</td>
 
 					<td class="text-right">
-						<span
-								t-att-class="oe_subtotal_footer_separator"
-								t-esc="subtotal['amount']"
-						/>
+						<span t-att-class="oe_subtotal_footer_separator"
+							  t-esc="subtotal['amount']"
+							  t-options='{"widget": "float", "precision": 2}'/>
 					</td>
 				</tr>
 			</xpath>
@@ -24,7 +23,7 @@
 						<strong>Net Total</strong>
 					</td>
 					<td class="text-right">
-						<span t-esc="tax_totals['amount_total']"/>
+						<span t-esc="tax_totals['amount_total']" t-options='{"widget": "float", "precision": 2}'/>
 					</td>
 				</tr>
 			</xpath>
@@ -184,7 +183,8 @@
 												<t t-if="variant['color_name'] != '-'">
 													<span t-esc="total_qty"/>
 													<t t-set="total_values"
-													   t-value="total_values + (variant['retail_price']* total_qty)" t-options='{"widget": "float", "precision": 2}'/>
+													   t-value="total_values + (variant['retail_price']* total_qty)"
+													   t-options='{"widget": "float", "precision": 2}'/>
 												</t>
 												<t t-else="">
 													<span t-set="total_qty" t-value="variant['line_total_qty']"/>
@@ -234,7 +234,7 @@
 													<span t-esc="total_values"
 														  t-options='{"widget": "float", "precision": 2}'/>
 
-<!--													<span t-options='{"widget": "integer", "precision": 2}'/>-->
+													<!--													<span t-options='{"widget": "integer", "precision": 2}'/>-->
 												</td>
 
 											</tr>
@@ -358,13 +358,13 @@
 								</div>
 
 							</div>
-<!--							<div class="col-4 mt-2">-->
-<!--&lt;!&ndash;								<p>&ndash;&gt;-->
-<!--&lt;!&ndash;									Head Office: 124/1, Industrial Estate Kot&ndash;&gt;-->
-<!--&lt;!&ndash;									<br/>&ndash;&gt;-->
-<!--&lt;!&ndash;									Lakhpat,Lahore<br/>Phone: +92-42-35121668-9&ndash;&gt;-->
-<!--&lt;!&ndash;								</p>&ndash;&gt;-->
-<!--							</div>-->
+							<!--							<div class="col-4 mt-2">-->
+							<!--&lt;!&ndash;								<p>&ndash;&gt;-->
+							<!--&lt;!&ndash;									Head Office: 124/1, Industrial Estate Kot&ndash;&gt;-->
+							<!--&lt;!&ndash;									<br/>&ndash;&gt;-->
+							<!--&lt;!&ndash;									Lakhpat,Lahore<br/>Phone: +92-42-35121668-9&ndash;&gt;-->
+							<!--&lt;!&ndash;								</p>&ndash;&gt;-->
+							<!--							</div>-->
 						</div>
 
 					</t>

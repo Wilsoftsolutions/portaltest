@@ -83,6 +83,8 @@ class InvoiceInheritReport(models.AbstractModel):
             'doc': invoice,
             'data': data,
             'c_name': rec.partner_id.name,
+            'stn_cnic': rec.partner_id.x_studio_partner,
+            'stn': rec.partner_id.x_studio_stn,
             'user': self.env.user.name,
             'date': rec.invoice_date,
             'name': rec.name,
