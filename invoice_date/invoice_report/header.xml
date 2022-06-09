@@ -113,7 +113,7 @@
 								<tr>
 									<td width="15%">Tel:</td>
 									<td class="tb_border" width="85%">
-										<span style="margin-left:5px" >
+										<span style="margin-left:5px">
 											<t t-esc="phone"/>
 										</span>
 									</td>
@@ -140,9 +140,9 @@
 
 							</table>
 						</div>
-                        <div class="col-5">
+						<div class="col-5">
 
-                        </div>
+						</div>
 
 					</div>
 
@@ -150,7 +150,14 @@
 				</div>
 			</div>
 
-			<div class="footer" style="margin-top:-90px">
+			<div class="footer">
+				<div class="col-4 mt-2" style="border:1px solid lightgray">
+					<p>
+						Head Office: 124/1, Industrial Estate Kot
+						<br/>
+						Lakhpat,Lahore<br/>Phone: +92-42-35121668-9
+					</p>
+				</div>
 			</div>
 		</template>
 

@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 	<data>
+		<template id="purchase_extended_report_requestsss_for_request"
+				  inherit_id="account.document_tax_totals">
+			<xpath expr="//tr[1]" position="replace">
+				<tr class="border-black o_subtotal">
+					<td>
+						<strong>Total WS Value</strong>
+					</td>
+
+					<td class="text-right">
+						<span
+								t-att-class="oe_subtotal_footer_separator"
+								t-esc="subtotal['amount']"
+						/>
+					</td>
+				</tr>
+			</xpath>
+
+			<xpath expr="//tr[@class='border-black o_total']" position="replace">
+				<tr class="border-black o_total">
+					<td>
+						<strong>Net Total</strong>
+					</td>
+					<td class="text-right">
+						<span t-esc="tax_totals['amount_total']"/>
+					</td>
+				</tr>
+			</xpath>
+		</template>
+
+
 		<template id="invoice_report_id">
 
 			<t t-call="web.html_container" style="margin-top:150px">
@@ -154,7 +184,7 @@
 												<t t-if="variant['color_name'] != '-'">
 													<span t-esc="total_qty"/>
 													<t t-set="total_values"
-													   t-value="total_values + (variant['retail_price']* total_qty)"/>
+													   t-value="total_values + (variant['retail_price']* total_qty)" t-options='{"widget": "float", "precision": 2}'/>
 												</t>
 												<t t-else="">
 													<span t-set="total_qty" t-value="variant['line_total_qty']"/>
@@ -190,120 +220,66 @@
 								</t>
 
 								<!--calculation summary of the report-->
-
-
-								<tr style="border:1px solid white; margin-top:40px padding-top:5px">
-									<td colspan="6" style="border:none; border-color:none"></td>
-									<td colspan="" style="border:1px solid #e3e8e5;">Total Value</td>
-									<td colspan="" style="border:1px solid #e3e8e5;">
-
-										<span t-esc="total_values" t-options='{"widget": "float", "precision": 2}'/>
-									</td>
-								</tr>
-								<tr style="border:1px solid white; margin-top:10px">
-									<td colspan="6" style="border:none; border-color:none"></td>
-									<td colspan="" style="border:1px solid #e3e8e5;">Total WS Value</td>
-									<td colspan="" style=" border:1px solid #e3e8e5;">
-										<span t-esc="o.amount_untaxed" t-options='{"widget": "float", "precision": 2}'/>
-									</td>
-								</tr>
-								<t t-foreach="o.invoice_line_ids.tax_ids" t-as="tax">
-
-									<tr style="border:1px solid white; margin-top:10px">
-										<td colspan="6" style="border:none; border-color:none;"></td>
-										<td colspan="" style="border:1px solid #e3e8e5;">
-											<span t-esc="tax.name"/>
-										</td>
-
-										<td colspan="" style="border:1px solid #e3e8e5;">
-											<span t-esc="tax.amount"/>
-
-										</td>
-
-									</tr>
-								</t>
-
-								<!--								<tr style="border:1px solid white; margin-top:10px">-->
-
-
-								<!--									<td colspan="6" style="border:none; border-color:none"></td>-->
-								<!--									<t t-foreach="o.invoice_line_ids.tax_ids" t-as="taxes">-->
-								<!--										<t t-if="taxes.name=='Further Tax 3%'">-->
-								<!--											<td colspan="" style="border:1px solid #e3e8e5;">Further Tax 3%</td>-->
-
-
-								<!--											<td colspan="" style="border:1px solid #e3e8e5;">-->
-								<!--												<span t-esc="taxes.amount"/>-->
-
-								<!--											</td>-->
-								<!--										</t>-->
-								<!--									</t>-->
-								<!--								</tr>-->
-
-								<tr style="border:1px solid white; margin-top:10px;padding:3">
-									<td colspan="6" style="border:none; border-color:none"></td>
-									<td colspan="" style="border:1px solid #e3e8e5;padding:3">Net Value</td>
-									<td colspan="" style="border:1px solid #e3e8e5;padding:3">
-										<span t-esc="o.amount_total" t-options='{"widget": "float", "precision": 2}'/>
-									</td>
-								</tr>
-
-
 							</table>
-							<!--							<div class="clearfix">-->
-							<!--								<div id="total" class="row">-->
-							<!--									<div t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ml-auto">-->
-							<!--										<table class="table table-sm" style="page-break-inside: avoid;">-->
-							<!--											<tr>-->
-							<!--												<td>-->
-							<!--													<strong>Total Value</strong>-->
-							<!--												</td>-->
-							<!--												<td class="text-right">-->
-							<!--													<span  t-options='{"widget": "integer", "precision": 2}'/>-->
-							<!--												</td>-->
+							<div class="clearfix">
+								<div id="total" class="row">
+									<div t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ml-auto">
+										<table class="table table-sm" style="page-break-inside: avoid;">
+											<tr>
+												<td>
+													<strong>Total Value</strong>
+												</td>
 
-							<!--											</tr>-->
+												<td class="text-right">
+													<span t-esc="total_values"
+														  t-options='{"widget": "float", "precision": 2}'/>
 
-							<!--											&lt;!&ndash;Tax totals&ndash;&gt;-->
-							<!--											<t t-set="tax_totals" t-value="json.loads(o.tax_totals_json)"/>-->
-							<!--											<t t-call="account.document_tax_totals"/>-->
+<!--													<span t-options='{"widget": "integer", "precision": 2}'/>-->
+												</td>
 
-							<!--											&lt;!&ndash;Payments&ndash;&gt;-->
-							<!--											<t t-if="print_with_payments">-->
-							<!--												<t t-if="o.payment_state != 'invoicing_legacy'">-->
-							<!--													<t t-set="payments_vals"-->
-							<!--													   t-value="o.sudo()._get_reconciled_info_JSON_values()"/>-->
-							<!--													<t t-foreach="payments_vals" t-as="payment_vals">-->
-							<!--														<tr>-->
-							<!--															<td>-->
-							<!--																<i class="oe_form_field text-right oe_payment_label">-->
-							<!--																	Paid on-->
-							<!--																	<t t-esc="payment_vals['date']"-->
-							<!--																	   t-options='{"widget": "date"}'/>-->
-							<!--																</i>-->
-							<!--															</td>-->
-							<!--															<td class="text-right">-->
-							<!--																<span t-esc="payment_vals['amount']"-->
-							<!--																	  t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>-->
-							<!--															</td>-->
-							<!--														</tr>-->
-							<!--													</t>-->
-							<!--													<t t-if="len(payments_vals) > 0">-->
-							<!--														<tr class="border-black">-->
-							<!--															<td>-->
-							<!--																<strong>Amount Due</strong>-->
-							<!--															</td>-->
-							<!--															<td class="text-right">-->
-							<!--																<span t-field="o.amount_residual" t-options='{"widget": "integer", "precision": 2}'/>-->
-							<!--															</td>-->
-							<!--														</tr>-->
-							<!--													</t>-->
-							<!--												</t>-->
-							<!--											</t>-->
-							<!--										</table>-->
-							<!--									</div>-->
-							<!--								</div>-->
-							<!--							</div>-->
+											</tr>
+
+											<!--Tax totals-->
+											<t t-set="tax_totals" t-value="json.loads(o.tax_totals_json)"/>
+											<t t-call="account.document_tax_totals"/>
+
+											<!--Payments-->
+											<t t-if="print_with_payments">
+												<t t-if="o.payment_state != 'invoicing_legacy'">
+													<t t-set="payments_vals"
+													   t-value="o.sudo()._get_reconciled_info_JSON_values()"/>
+													<t t-foreach="payments_vals" t-as="payment_vals">
+														<tr>
+															<td>
+																<i class="oe_form_field text-right oe_payment_label">
+																	Paid on
+																	<t t-esc="payment_vals['date']"
+																	   t-options='{"widget": "date"}'/>
+																</i>
+															</td>
+															<td class="text-right">
+																<span t-esc="payment_vals['amount']"
+																	  t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+															</td>
+														</tr>
+													</t>
+													<t t-if="len(payments_vals) > 0">
+														<tr class="border-black">
+															<td>
+																<strong>Amount Due</strong>
+															</td>
+															<td class="text-right">
+																<span t-field="o.amount_residual"
+																	  t-options='{"widget": "integer", "precision": 2}'/>
+															</td>
+														</tr>
+													</t>
+												</t>
+											</t>
+										</table>
+									</div>
+								</div>
+							</div>
 						</div>
 						<p style="border-bottom:1px solid lightgray; margin-top:90px; margin-left:390px; font-size:13px">
 							<t t-esc="o.num_words"/>
@@ -382,13 +358,13 @@
 								</div>
 
 							</div>
-							<div class="col-4 mt-2" style="border:1px solid lightgray">
-								<p>
-									Head Office: 124/1, Industrial Estate Kot
-									<br/>
-									Lakhpat,Lahore<br/>Phone: +92-42-35121668-9
-								</p>
-							</div>
+<!--							<div class="col-4 mt-2">-->
+<!--&lt;!&ndash;								<p>&ndash;&gt;-->
+<!--&lt;!&ndash;									Head Office: 124/1, Industrial Estate Kot&ndash;&gt;-->
+<!--&lt;!&ndash;									<br/>&ndash;&gt;-->
+<!--&lt;!&ndash;									Lakhpat,Lahore<br/>Phone: +92-42-35121668-9&ndash;&gt;-->
+<!--&lt;!&ndash;								</p>&ndash;&gt;-->
+<!--							</div>-->
 						</div>
 
 					</t>
