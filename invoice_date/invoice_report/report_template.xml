@@ -232,7 +232,7 @@
 
 												<td class="text-right">
 													<span t-esc="total_values"
-														  t-options='{"widget": "float", "precision": 2}'/>
+														  t-options='{"widget": "monetary", "display_currency": o.currency_id }' />
 
 													<!--													<span t-options='{"widget": "integer", "precision": 2}'/>-->
 												</td>
@@ -270,7 +270,7 @@
 															</td>
 															<td class="text-right">
 																<span t-field="o.amount_residual"
-																	  t-options='{"widget": "integer", "precision": 2}'/>
+																	  t-options='{"widget": "float", "precision": 2, }'/>
 															</td>
 														</tr>
 													</t>
@@ -325,7 +325,7 @@
 											</tr>
 
 											<tr>
-												<td>Currency Of Account ::</td>
+												<td>Currency Of Account:</td>
 												<td style="">
 													<div style="border-bottom:1px solid lightgray; width:550px; margin-left:20px">
 														<span style="margin-left:20px">PKR</span>
@@ -333,7 +333,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td>Account Numbers IBNA :</td>
+												<td>Account Numbers IBNA:</td>
 												<td style="">
 													<div style="border-bottom:1px solid lightgray; width:550px; margin-left:20px">
 														<span style="margin-left:20px">8329185 , 15897919205503 and
@@ -343,7 +343,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td>Bank Identification Code (BIC) or SWIFT Code :</td>
+												<td>Bank Identification Code (BIC) or SWIFT Code</td>
 												<td style="">
 													<div style="width:550px; margin-left:20px">
 														<span style="margin-left:20px">
