@@ -15,12 +15,12 @@ class InvoiceInheritReport(models.AbstractModel):
                 try:
                     if i.product_id.sh_is_bundle:
                         # get product_name , color, size_range, Assortment
-                        color_name, size = self.get_color_name(i.product_id)
+                        color_name = self.get_color_name(i.product_id)
+                        size_range, assortment = self.get_assortment_size_range(i.product_id)
                         product_combine_name = i.product_id.name
                         split_res = product_combine_name.split('-')
                         product_name = ''
                         product_color = ''
-                        size_range = split_res[5] + '-' + split_res[6]
                         for rec in split_res:
                             if color_name.upper() == rec.upper():
                                 product_color = rec
@@ -28,9 +28,6 @@ class InvoiceInheritReport(models.AbstractModel):
                             else:
                                 product_name += rec
 
-                        assortment = ''
-                        for assort in split_res[7:]:
-                            assortment += assort
                         dict_exist = next(
                             (item for item in product_data if item['product_id'] ==
                              i.product_id.id), None)
@@ -41,7 +38,7 @@ class InvoiceInheritReport(models.AbstractModel):
                                 'color': product_color,
                                 'size_range': size_range,
                                 'assortment': assortment,
-                                'line_total_qty': i.product_id.product_qty,
+                                'line_total_qty': i.product_qty,
                                 'retail_price': i.price_unit,
                                 'sizes': [{
                                     '39': 0,
@@ -86,10 +83,24 @@ class InvoiceInheritReport(models.AbstractModel):
                     color_id = product_attribute.filtered(
                         lambda attribute: attribute.attribute_id.name.upper() == 'COLOR'
                     )
+                    return color_id.name
+
+    def get_assortment_size_range(self, product=None):
+        size_range = []
+        assortment = []
+        for rec in product:
+            if rec.sh_bundle_product_ids:
+                for assort in rec.sh_bundle_product_ids:
+                    assortment.append(int(assort.sh_qty))
+                for size in rec.sh_bundle_product_ids:
+                    product_attribute = size.sh_product_id.product_template_attribute_value_ids
                     size = product_attribute.filtered(
                         lambda attribute: attribute.attribute_id.name.upper() == 'SIZE'
                     )
-                    return color_id.name, size
+                    size_range.append(size.name)
+        assortment = '-'.join([str(assortment[i]) for i in range(len(assortment))])
+        size_range = size_range[0] + '-' + size_range[-1]
+        return '(' + size_range + ')', '(' + assortment + ')'
 
     def create_line_without_qty(self, variant_values=None, i=None):
         variant_values.append({

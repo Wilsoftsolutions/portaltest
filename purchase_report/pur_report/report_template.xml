@@ -18,55 +18,55 @@
 
                         <!--the section below the header-->
 
-                        <div class="container">
-                            <t t-foreach="doc_model" t-as="o">
-                                <table width="80%">
-                                    <tr>
-                                        <td style="">
-                                            <b style="">To :</b>
-                                        </td>
-                                        <td style="border:1px solid black; text-align:center; height:40px">
-                                            <span t-esc="o.partner_id.name"/>
-                                        </td>
+<!--                        <div class="container">-->
+<!--                            <t t-foreach="doc_model" t-as="o">-->
+<!--                                <table width="80%">-->
+<!--                                    <tr>-->
+<!--                                        <td style="">-->
+<!--                                            <b style="">To :</b>-->
+<!--                                        </td>-->
+<!--                                        <td style="border:1px solid black; text-align:center; height:40px">-->
+<!--                                            <span t-esc="o.partner_id.name"/>-->
+<!--                                        </td>-->
 
-                                        <td style="text-align:center">
-                                            <b style="">Delivered To :</b>
-                                        </td>
-                                        <td style="border:1px solid black; text-align:center">
-                                            <span t-esc="o.partner_id.name"/>
-                                        </td>
+<!--                                        <td style="text-align:center">-->
+<!--                                            <b style="">Delivered To :</b>-->
+<!--                                        </td>-->
+<!--                                        <td style="border:1px solid black; text-align:center">-->
+<!--                                            <span t-esc="o.partner_id.name"/>-->
+<!--                                        </td>-->
 
-                                    </tr>
-                                </table>
+<!--                                    </tr>-->
+<!--                                </table>-->
 
-                                <table width="25%" style="margin-top:15px">
-                                    <tr>
-                                        <th>Purchase Order:</th>
-                                        <td>
-                                            <span t-esc="o.name"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>PO Date :</th>
-                                        <td>
-<!--                                            <span t-esc="o.date_approve.date()"/>-->
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>PO Closing Date :</th>
-                                        <td>
-<!--                                            <span t-esc="o.date_planned.date()"/>-->
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Department :</th>
-                                        <td>
-                                            <span t-esc="o.user_id.department_id.name"/>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </t>
-                        </div>
+<!--                                <table width="25%" style="margin-top:15px">-->
+<!--                                    <tr>-->
+<!--                                        <th>Purchase Order:</th>-->
+<!--                                        <td>-->
+<!--                                            <span t-esc="o.name"/>-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <th>PO Date :</th>-->
+<!--                                        <td>-->
+<!--&lt;!&ndash;                                            <span t-esc="o.date_approve.date()"/>&ndash;&gt;-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <th>PO Closing Date :</th>-->
+<!--                                        <td>-->
+<!--&lt;!&ndash;                                            <span t-esc="o.date_planned.date()"/>&ndash;&gt;-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <th>Department :</th>-->
+<!--                                        <td>-->
+<!--                                            <span t-esc="o.user_id.department_id.name"/>-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
+<!--                                </table>-->
+<!--                            </t>-->
+<!--                        </div>-->
 
 
                         <table width="100%" class="table-bordered table" style="margin-top:60px">
