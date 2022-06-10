@@ -49,13 +49,13 @@
                                     <tr>
                                         <th>PO Date :</th>
                                         <td>
-                                            <span t-esc="o.date_approve.date()"/>
+<!--                                            <span t-esc="o.date_approve.date()"/>-->
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>PO Closing Date :</th>
                                         <td>
-                                            <span t-esc="o.date_planned.date()"/>
+<!--                                            <span t-esc="o.date_planned.date()"/>-->
                                         </td>
                                     </tr>
                                     <tr>
