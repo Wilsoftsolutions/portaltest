@@ -11,13 +11,13 @@
                                     <span>
 <!--                                        <img src="/purchase_report/static/glan.png" width="100%" height="100"-->
 <!--                                             style="margin-left:-14px"/>-->
-                                        <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="height:100px;" width="90%"/>
+                                        <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="height:70px;" width="100%"/>
                                     </span>
                                 </div>
                                 <div class="col-9">
-                                    <h2 class="text-white" style="padding-left: 15px; padding-top:30px">
+                                    <h3 class="text-white" style="padding-left: 15px; padding-top:30px">
                                         <b>Purchase Order GLANZ Design Private Limtited</b>
-                                    </h2>
+                                    </h3>
                                 </div>
                             </div>
                         </div>

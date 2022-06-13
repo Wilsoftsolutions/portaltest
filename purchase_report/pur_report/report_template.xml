@@ -17,9 +17,7 @@
 						}
 					</style>
 					<t t-foreach="doc_model" t-as="o">
-
-
-						<div class="page" style="font-size:12px;">
+						<div class="page" style="font-size:12px;margin-top:30px;">
 							<br/>
 							<br/>
 							<br/>
@@ -338,17 +336,7 @@
 							<br/>
 							<div class="row">
 								<div class="col-8">
-									<text style="font-size:12px;">Terms:
-										Payment terms: ….. Days Net after submission of invoice
-										Shipment subject to quality inspection against approved production sample and
-										specification sheet
-										Glanz not liable for loss incurred due to delayed or defective production
-										Carton markings and barcodes are required on all cartons as per agreed
-										guidelines
-										Cartons must be sealed with vendor coded tape as per agreed guidelines
-										Any trademark or copyright of Glanz Design cannot be used without authorization
-										Purchase Order number must appear on all documents pertaining to this order
-									</text>
+									<span t-field="o.notes"/>
 									<br/>
 									<br/>
 									<!--								<strong>Approved BY HOD Merchandising-->
