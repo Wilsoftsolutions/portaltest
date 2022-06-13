@@ -34,12 +34,13 @@ class InvoiceInheritReport(models.AbstractModel):
                         if not dict_exist:
                             new_dict = {
                                 'product_id': i.product_id.id,
-                                'product_name': product_name,
+                                'product_name': i.product_id.name,
                                 'color': product_color,
                                 'size_range': size_range,
                                 'assortment': assortment,
                                 'line_total_qty': i.product_qty,
-                                'retail_price': i.price_unit,
+                                'retail_price': i.product_id.x_studio_pair_price,
+                                'price_unit': i.price_unit,
                                 'sizes': [{
                                     '39': 0,
                                     '40': 0,
@@ -109,7 +110,8 @@ class InvoiceInheritReport(models.AbstractModel):
             'color': '-',
             'size_range': '-',
             'assortment': '-',
-            'retail_price': i.price_unit,
+            'retail_price': i.product_id.x_studio_pair_price,
+            'price_unit': i.price_unit,
             'line_total_qty': i.product_qty,
             'sizes': [{
                 '39': 0,
