@@ -18,144 +18,85 @@
 				</h3>
 
 				<!--                       second section of the report-->
-				<div class="container">
-					<div class="row">
-						<div class="col-6" style="border:1px solid lightgray;">
-							<div class="row">
-								<div class="col-4">
-									<img t-if="company.logo" t-att-src="image_data_uri(company.logo)"
-										 style="height:135px;" width="100%"/>
-								</div>
-								<div class="col-8">
-									<span>
-										<h6>
-											<b>GLANS DESIGN LIMITED</b>
-										</h6>
-										<p style="font-size:13px;margin-top:-10px">124/1, Quaid-e-Azam Industrial Estate
-											Kot Lakhpat, Lahore, Punjab
-											54700
-										</p>
-										<p style="font-size:13px; margin-top:-10px"><b>Phone :</b>Tel #
-											<t t-esc="company.phone"/>
-											<br/>
-											<b>Address :</b>
-											<t t-esc="company.street"/>
-											<br/>
-											<b>E-mail :</b>
-											<t t-esc="company.email"/>
-											<br/>
-											<b>NTN :</b>
-											<t t-esc="company.vat"/>
-											<br/>
-											<b>SRTN :</b>
-											<t t-esc="company.partner_id.x_studio_stn"/>
+				<t t-foreach="doc" t-as="o">
 
-											<br/>
-										</p>
-									</span>
+					<div class="container">
+						<div class="row">
+							<div class="col-6" style="border:1px solid lightgray;">
+								<div class="row">
+									<div class="col-4">
+										<img t-if="company.logo" t-att-src="image_data_uri(company.logo)"
+											 style="height:135px;" width="100%"/>
+									</div>
+
+									<div class="col-8">
+										<span>
+											<h6>
+												<b>GLANS DESIGN LIMITED</b>
+											</h6>
+											<p style="font-size:13px;margin-top:-10px">124/1, Quaid-e-Azam Industrial
+												Estate
+												Kot Lakhpat, Lahore, Punjab
+												54700
+											</p>
+											<p style="font-size:13px; margin-top:-10px"><b>Phone :</b>Tel #
+												<t t-esc="company.phone"/>
+												<br/>
+												<b>Address :</b>
+												<t t-esc="company.street"/>
+												<br/>
+												<b>E-mail :</b>
+												<t t-esc="company.email"/>
+												<br/>
+												<b>NTN :</b>
+												<t t-esc="company.vat"/>
+												<br/>
+												<b>SRTN :</b>
+												<t t-esc="company.partner_id.x_studio_stn"/>
+
+												<br/>
+											</p>
+										</span>
+									</div>
 								</div>
 							</div>
+							<div class="col-4 offset-2 text-right">
+								<p style="font-size:11px;margin-top:-7px;">
+									<b>Printed By:</b>
+									<span style="border-bottom:1px solid lightgray; margin-left:10px">
+										<t t-esc="user.name"/>
+									</span>
+								</p>
+								<p style="font-size:11px;margin-top:-7px;">
+									<b>Printed On:</b>
+									<span style="border-bottom:1px solid lightgray; margin-left:10px">
+										<t t-esc="date"/>
+									</span>
+								</p>
+								<p style="font-size:11px;margin-top:-7px;">
+									<b>Invoice number:</b>
+									<span style="border-bottom:1px solid lightgray; margin-left:10px">
+										<t t-esc="o.name"/>
+									</span>
+								</p>
+								<p style="font-size:11px;margin-top:-7px;">
+									<b>Invoice date:</b>
+									<span style="border-bottom:1px solid lightgray; margin-left:10px">
+										<t t-esc="o.invoice_date"/>
+									</span>
+								</p>
+								<p style="font-size:11px;margin-top:-7px;">
+									<b>SO Number :</b>
+									<span style="border-bottom:1px solid lightgray; margin-left:10px">
+										<t t-esc="o.invoice_origin"/>
+									</span>
+								</p>
+							</div>
 						</div>
-						<div class="col-4 offset-2 text-right">
-							<p style="font-size:11px;margin-top:-7px;">
-								<b>Printed By:</b>
-								<span style="border-bottom:1px solid lightgray; margin-left:10px">
-									<t t-esc="user.name"/>
-								</span>
-							</p>
-							<p style="font-size:11px;margin-top:-7px;">
-								<b>Printed On:</b>
-								<span style="border-bottom:1px solid lightgray; margin-left:10px">
-									<t t-esc="date"/>
-								</span>
-							</p>
-							<p style="font-size:11px;margin-top:-7px;">
-								<b>Invoice number:</b>
-								<span style="border-bottom:1px solid lightgray; margin-left:10px">
-									<t t-esc="name"/>
-								</span>
-							</p>
-							<p style="font-size:11px;margin-top:-7px;">
-								<b>Invoice date:</b>
-								<span style="border-bottom:1px solid lightgray; margin-left:10px">
-									<t t-esc="date"/>
-								</span>
-							</p>
-							<p style="font-size:11px;margin-top:-7px;">
-								<b>SO Number :</b>
-								<span style="border-bottom:1px solid lightgray; margin-left:10px">
-									<t t-esc="invoice_origin"/>
-								</span>
-							</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-7"
-							 style="border:1px solid lightgray; padding:9px; margin-top:9px;">
-							<table style="font-size:13px; margin-top:9px" width="100%">
-								<tr>
-									<td width="15%">Customer:</td>
-									<td class="tb_border" width="85%">
-										<span style="margin-left:5px; color:black">
-											<t t-esc="c_name"/>
-										</span>
-									</td>
 
-								</tr>
-
-								<tr>
-									<td width="15%">Address:</td>
-									<td class="tb_border" width="85%">
-										<span style="margin-left:5px">
-											<t t-esc="address"/>
-										</span>
-									</td>
-								</tr>
-
-								<tr>
-									<td width="15%">Tel:</td>
-									<td class="tb_border" width="85%">
-										<span style="margin-left:5px">
-											<t t-esc="phone"/>
-										</span>
-									</td>
-								</tr>
-
-								<tr>
-									<td width="15%">STN/CNIC:</td>
-									<td class="tb_border" width="85%">
-										<span style="margin-left:5px">
-											<t t-esc="stn_cnic"/>
-
-										</span>
-									</td>
-								</tr>
-								<tr>
-									<td width="15%">SRTN:</td>
-									<td class="tb_border" width="85%">
-										<span style="margin-left:5px">
-											<t t-esc="stn"/>
-
-										</span>
-									</td>
-								</tr>
-								<tr style="font-size:11px">
-									<td width="15%">Ship/ Delivery:</td>
-									<td class="tb_border" width="85%">
-										<span style="margin-left:5px"></span>
-									</td>
-								</tr>
-
-							</table>
-						</div>
-						<div class="col-5">
-
-						</div>
 
 					</div>
-
-
-				</div>
+				</t>
 			</div>
 
 			<div class="footer">

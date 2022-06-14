@@ -1,24 +1,38 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models
+
+from odoo import models, fields, api
+
+
+class AccountMoveInherite(models.Model):
+    _inherit = 'account.move'
+
+    # @api.multi
+    num_words = fields.Char(string="Amount In Words:", compute='_compute_amount_in_words')
+
+    def _compute_amount_in_words(self):
+        for rec in self:
+            rec.num_words = str(rec.currency_id.amount_to_text(rec.amount_total)) + ' only'
+
+
 
 
 class InvoiceInheritReport(models.AbstractModel):
-    _name = 'report.invoice_date.sale_delivery_report_id'
-    _description = 'Sale delivery report python file'
+    _name = 'report.invoice_date.invoice_report_id'
+    _description = 'Product Quantity Color and size wise'
 
     def _get_report_values(self, docids, data=None):
-        invoice = self.env['stock.picking'].browse((docids[0]))
+        invoice = self.env['account.move'].browse((docids[0]))
         for rec in invoice:
             variant_values = []
             customer = []
-            for i in rec.move_ids_without_package:
+            for i in rec.invoice_line_ids:
                 customer.append({
                     'c_name': i.partner_id.name,
                     'address': i.partner_id.street,
                     'phone': i.partner_id.phone,
-                    'user': self.env.user.name,
-                    'date': rec.scheduled_date,
+                    'user':self.env.user.name,
+                    'date': rec.invoice_date,
                 })
                 try:
                     if i.product_id.product_tmpl_id:
@@ -37,10 +51,10 @@ class InvoiceInheritReport(models.AbstractModel):
                                 'product_name': i.product_id.name,
                                 'color_name': color_id.name,
                                 'color_id': color_id.id,
-                                'uom': i.product_uom.name if i.product_uom else None,
-                                'retail_price': i.price_unit,
+                                'uom': i.product_uom_id.name if i.product_uom_id else None,
+                                'retail_price': i.product_id.list_price,
                                 'line_total_qty': 0,
-                                'taxes': rec.amount_tax_signed,
+                                'taxes':rec.amount_tax_signed,
                                 'net_amount': rec.amount_total,
                                 'sizes': [{
                                     '39': 0,
@@ -59,32 +73,37 @@ class InvoiceInheritReport(models.AbstractModel):
                             dict_exist['sizes'][0][size.name] += i.quantity
 
                     else:
-                        self.create_line_without_pickage(variant_values, i)
+                        self.create_line_without_qty(variant_values, i)
 
                 except Exception:
-                    self.create_line_without_pickage(variant_values, i)
+                    self.create_line_without_qty(variant_values, i)
 
         return {
-            'doc_model': 'stock.picking',
+            'doc_model': 'account.move',
+            'doc': invoice,
             'data': data,
             'c_name': rec.partner_id.name,
+            # 'stn_cnic': rec.partner_id.x_studio_cnic,
+            # 'stn': rec.partner_id.x_studio_stn,
             'user': self.env.user.name,
-            'date': rec.scheduled_date,
+            'date': rec.invoice_date,
+            'name': rec.name,
+            'invoice_origin': rec.invoice_origin,
             'address': rec.partner_id.street,
             'phone': rec.partner_id.phone,
             'variant_values': variant_values,
         }
 
-    def create_line_without_pickage(self, variant_values=None, i=None):
+    def create_line_without_qty(self, variant_values=None, i=None):
         variant_values.append({
             'product_name': i.product_id.name,
             'color_name': '-',
             'color_id': '',
-            'uom': i.product_uom.name if i.product_uom else None,
-            'retail_price': i.price_unit,
-            'line_total_qty': i.product_uom_qty,
-            'taxes': 0,
-            'net_amount': 0,
+            'uom': i.product_uom_id.name if i.product_uom_id else None,
+            'retail_price': i.product_id.list_price,
+            'line_total_qty': i.quantity,
+            'taxes':i.move_id.amount_tax_signed,
+            'net_amount': i.move_id.amount_total,
             'sizes': [{
                 '39': 0,
                 '40': 0,

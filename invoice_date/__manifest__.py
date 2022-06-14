@@ -21,11 +21,7 @@
     # always loaded
     'data': [
         'invoice_report/report.xml',
-        # 'invoice_report/sale_delivery_report_action.xml',
         'invoice_report/report_template.xml',
-        # 'invoice_report/sale_delivery_report.xml',
-        # 'invoice_report/delivery_header.xml',
-        # 'invoice_report/footer.xml',
         'invoice_report/header.xml',
 
     ],
