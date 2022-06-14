@@ -16,7 +16,7 @@
 						border-collapse: collapse;
 						}
 					</style>
-					<t t-foreach="doc_model" t-as="o">
+					<t t-foreach="doc" t-as="o">
 						<div class="page" style="font-size:10px;margin-top:30px;">
 							<br/>
 							<br/>
