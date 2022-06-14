@@ -171,7 +171,7 @@ class InvoiceInheritReport(models.AbstractModel):
                     'assortment': '-',
                     'line_total_qty': inv_line.quantity,
                     'line_qty': inv_line.quantity,
-                    'retail_price': 0,
+                    'retail_price': inv_line.price_unit,
                     'price_unit': inv_line.price_unit,
                     'line_subtotal': inv_line.price_subtotal,
                     'uom': inv_line.product_uom_id.name if inv_line.product_uom_id else None,

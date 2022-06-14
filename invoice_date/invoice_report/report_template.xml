@@ -307,6 +307,7 @@
 												<t t-else="">
 													<span t-set="total_qty" t-value="variant['line_total_qty']"/>
 													<span t-esc="total_qty"/>
+
 												</t>
 											</td>
 											<td>
