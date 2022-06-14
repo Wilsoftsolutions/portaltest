@@ -174,6 +174,7 @@ class InvoiceInheritReport(models.AbstractModel):
                     'retail_price': 0,
                     'price_unit': inv_line.price_unit,
                     'line_subtotal': inv_line.price_subtotal,
+                    'uom': inv_line.product_uom_id.name if inv_line.product_uom_id else None,
                     'sizes': [{
                         '36': 0,
                         '37': 0,
