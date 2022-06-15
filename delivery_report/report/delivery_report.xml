@@ -69,7 +69,7 @@
 										<tr style="font-size:11px">
 											<td>Ship/Delivery:</td>
 											<td class="tb_border">
-												<span style="margin-left:20px">Shop one at johar</span>
+												<span style="margin-left:20px"></span>
 											</td>
 										</tr>
 
@@ -212,7 +212,7 @@
 											<td style="text-align:right">
 												<span t-esc="variant['retail_price']"/>
 												<span t-set="count_disc"
-													  t-value="count_disc + variant['retail_price']"/>
+													  t-value="count_disc + variant['retail_price']"  t-options='{"widget": "float", "precision": 2}'/>
 
 											</td>
 
@@ -232,7 +232,7 @@
 									<td colspan="" style="border:1px solid #e3e8e5;">Total Value</td>
 									<td colspan="" style="border:1px solid #e3e8e5;text-align:right">
 										<span t-esc="total_retail_price"
-											  t-options='{"widget": "integer", "precision": 2}'/>
+											  t-options='{"widget": "float", "precision": 2}'/>
 									</td>
 								</tr>
 								<!--  <tr style="border:1px solid white; margin-top:10px">
