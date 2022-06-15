@@ -41,6 +41,7 @@ class InvoiceInheritReport(models.AbstractModel):
                                 'line_total_qty': i.quantity,
                                 'line_qty': i.quantity,
                                 'retail_price': i.price_unit,
+                                'pair_price': i.product_id.x_studio_pair_price,
                                 'price_unit': i.price_unit,
                                 'line_subtotal': i.price_subtotal,
                                 'uom': i.product_uom_id.name if i.product_uom_id else None,
@@ -132,6 +133,7 @@ class InvoiceInheritReport(models.AbstractModel):
             'line_total_qty': i.quantity,
             'line_qty': i.quantity,
             'line_subtotal': i.price_subtotal,
+            'pair_price': i.product_id.x_studio_pair_price,
             'uom': i.product_uom_id.name if i.product_uom_id else None,
             'sizes': [{
                 '36': 0,
@@ -174,6 +176,7 @@ class InvoiceInheritReport(models.AbstractModel):
                     'retail_price': inv_line.price_unit,
                     'price_unit': inv_line.price_unit,
                     'line_subtotal': inv_line.price_subtotal,
+                    'pair_price': inv_line.product_id.x_studio_pair_price,
                     'uom': inv_line.product_uom_id.name if inv_line.product_uom_id else None,
                     'sizes': [{
                         '36': 0,

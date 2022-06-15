@@ -301,7 +301,7 @@
 												<t t-if="variant['color'] != '-'">
 													<span t-esc="total_qty"/>
 													<t t-set="total_values"
-													   t-value="total_values + (variant['retail_price']* total_qty)"/>
+													   t-value="total_values + (variant['pair_price']* total_qty)"/>
 												</t>
 
 												<t t-else="">
