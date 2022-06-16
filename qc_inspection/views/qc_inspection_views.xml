@@ -27,7 +27,7 @@
 								</group>
 								<group>
 									<field name="id" string="SR #"/>
-									                                        <field name="bundle" />
+<!--									                                        <field name="bundle" />-->
 								</group>
 							</group>
 							<h3 style="text-decoration-line: underline">Purchase Order Details:
