@@ -126,6 +126,7 @@ class QcInspection(models.Model):
 		for rec in self:
 			for po in rec.po_item_id:
 				rec.image = po.product_id.image_1920
+				rec.plan = po.product_qty * 12
 				for line in po.product_id.sh_bundle_product_ids:
 
 					product_attribute = line.sh_product_id.product_template_attribute_value_ids
