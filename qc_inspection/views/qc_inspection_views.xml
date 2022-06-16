@@ -70,7 +70,7 @@
 
 							<tr>
 								<td style="height:40px;width:80px;">
-									<field name="image" widget="image"/>
+									<field name="image" widget="image" force_save="True" readonly="1"/>
 								</td>
 								<td style="text-align:center">
 									<field name="plan" force_save="True"/>
