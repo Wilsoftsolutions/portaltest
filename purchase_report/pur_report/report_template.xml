@@ -39,7 +39,7 @@
 											<b style="">Delivered To :</b>
 										</td>
 										<td style="border:1px solid black; text-align:center">
-											<span t-esc="o.partner_id.name"/>
+											Sunder Warehouse 234-235
 										</td>
 
 									</tr>
