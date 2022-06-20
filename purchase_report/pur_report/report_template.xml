@@ -261,7 +261,7 @@
 												12 Per Carton
 											</td>
 											<td>
-													<span t-esc="variant['line_qty']/12"
+													<span t-esc="total_qty/12"
 													  t-options='{"widget": "float", "precision": 2}'/>
 											</td>
 											<td>
