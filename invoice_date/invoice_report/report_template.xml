@@ -70,9 +70,6 @@
 							<br/>
 							<br/>
 							<br/>
-							<br/>
-							<br/>
-
 							<div class="row">
 								<div class="col-7"
 									 style="border:1px solid lightgray; padding:9px;">
@@ -479,7 +476,7 @@
 								<div class="col-12" style="border:1px solid lightgray; margin-left:-10px">
 									<div class="col-12">
 										<table width="100%" class="bank_detail"
-											   style="font-size:13px; margin-top:9px;">
+											   style="font-size:10px; margin-top:9px;">
 											<tr>
 
 												<td class="cd" width="20%">Account Name:</td>

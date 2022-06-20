@@ -99,8 +99,8 @@
 				</t>
 			</div>
 
-			<div class="footer">
-				<div class="col-6 mt-2" style="border:1px solid lightgray">
+			<div class="footer" >
+				<div class="col-6 mt-2" style="border:1px solid lightgray;font-size:10px;">
 					<p>
 						Head Office: 124/1, Industrial Estate Kot
 						<br/>
