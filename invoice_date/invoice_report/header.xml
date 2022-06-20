@@ -13,9 +13,9 @@
 					}
 				</style>
 				<!--                         header of the report-->
-				<h3 class="text-center" style="font-size:12px;">
+				<h4 class="text-center" >
 					<b>Sale Invoice</b>
-				</h3>
+				</h4>
 
 				<!--                       second section of the report-->
 				<t t-foreach="doc" t-as="o">
