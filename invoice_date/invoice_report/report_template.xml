@@ -32,7 +32,7 @@
 
 		<template id="invoice_report_id">
 
-			<t t-call="web.html_container" >
+			<t t-call="web.html_container">
 				<t t-call="invoice_date.id_of_the_template"/>
 
 
@@ -70,74 +70,77 @@
 							<br/>
 							<br/>
 							<br/>
+							<div class="container">
 
-							<div class="row">
-								<div class="col-7"
-									 style="border:1px solid lightgray; padding:9px;">
-									<table style="font-size:10px;" width="100%">
-										<tr>
-											<td class="cd" width="15%">Customer:</td>
-											<td class="tb_border" width="85%">
-												<span style="margin-left:5px; color:black">
-													<t t-esc="o.partner_id.name"/>
-												</span>
-											</td>
 
-										</tr>
+								<div class="row">
+									<div class="col-7"
+										 style="border:1px solid lightgray; padding:9px;">
+										<table style="font-size:10px;" width="100%">
+											<tr>
+												<td class="cd" width="15%">Customer:</td>
+												<td class="tb_border" width="85%">
+													<span style="margin-left:5px; color:black">
+														<t t-esc="o.partner_id.name"/>
+													</span>
+												</td>
 
-										<tr>
-											<td class="cd" width="15%">Address:</td>
-											<td class="tb_border" width="85%">
-												<span style="margin-left:5px">
-													<t t-esc="o.partner_id.street"/>
-												</span>
-											</td>
-										</tr>
+											</tr>
 
-										<tr>
-											<td class="cd" width="15%">Tel:</td>
-											<td class="tb_border" width="85%">
-												<span style="margin-left:5px">
-													<t t-esc="o.partner_id.phone"/>
-												</span>
-											</td>
-										</tr>
+											<tr>
+												<td class="cd" width="15%">Address:</td>
+												<td class="tb_border" width="85%">
+													<span style="margin-left:5px">
+														<t t-esc="o.partner_id.street"/>
+													</span>
+												</td>
+											</tr>
 
-										<tr>
-											<td class="cd" width="15%">STN/CNIC:</td>
-											<td class="tb_border" width="85%">
-												<span style="margin-left:5px">
-													<!--											<t t-esc="stn_cnic"/>-->
+											<tr>
+												<td class="cd" width="15%">Tel:</td>
+												<td class="tb_border" width="85%">
+													<span style="margin-left:5px">
+														<t t-esc="o.partner_id.phone"/>
+													</span>
+												</td>
+											</tr>
 
-												</span>
-											</td>
-										</tr>
-										<tr>
-											<td class="cd" width="15%">SRTN:</td>
-											<td class="tb_border" width="85%">
-												<span style="margin-left:5px">
-													<!--											<t t-esc="stn"/>-->
+											<tr>
+												<td class="cd" width="15%">STN/CNIC:</td>
+												<td class="tb_border" width="85%">
+													<span style="margin-left:5px">
+														<t t-esc="o.partner_id.x_studio_cnic"/>
 
-												</span>
-											</td>
-										</tr>
-										<tr style="font-size:10px">
-											<td class="cd" width="15%">Ship/ Delivery:</td>
-											<td class="tb_border" width="85%">
-												<span style="margin-left:5px"></span>
-											</td>
-										</tr>
+													</span>
+												</td>
+											</tr>
+											<tr>
+												<td class="cd" width="15%">SRTN:</td>
+												<td class="tb_border" width="85%">
+													<span style="margin-left:5px">
+														<t t-esc="o.partner_id.x_studio_stn"/>
 
-									</table>
+													</span>
+												</td>
+											</tr>
+											<tr style="font-size:10px">
+												<td class="cd" width="15%">Ship/ Delivery:</td>
+												<td class="tb_border" width="85%">
+													<span style="margin-left:5px"></span>
+												</td>
+											</tr>
+
+										</table>
+									</div>
+									<div class="col-5">
+
+									</div>
+
 								</div>
-								<div class="col-5">
-
-								</div>
-
 							</div>
 
 
-							<table width="100%" style="margin-top:60px;text-align:center;" >
+							<table width="100%" style="margin-top:60px;text-align:center;">
 								<thead class="text-center">
 									<tr style="padding-top:7px;">
 										<th width="4%">Sr#</th>
@@ -168,7 +171,7 @@
 											</table>
 										</th>
 										<th width="8%">Qty</th>
-										<th width="7%">Retail Price</th>
+										<th width="10%">W.Sale Price</th>
 										<!--                                    <th width=".5%" style="background-color:white;">.</th>-->
 										<!--										<th width="7%">Unit Rate Cost</th>-->
 										<th width="10%">Total Retail
