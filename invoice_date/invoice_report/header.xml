@@ -22,7 +22,7 @@
 
 					<div class="container">
 						<div class="row">
-							<div class="col-6" style="border:1px solid lightgray;">
+							<div class="col-7" style="border:1px solid lightgray;">
 								<div class="row">
 									<div class="col-4">
 										<img t-if="company.logo" t-att-src="image_data_uri(company.logo)"
@@ -60,7 +60,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-4 offset-2 text-right">
+							<div class="col-5 text-right">
 								<p style="font-size:11px;margin-top:-7px;">
 									<b>Printed By:</b>
 									<span style="border-bottom:1px solid lightgray; margin-left:10px">
@@ -100,7 +100,7 @@
 			</div>
 
 			<div class="footer">
-				<div class="col-4 mt-2" style="border:1px solid lightgray">
+				<div class="col-6 mt-2" style="border:1px solid lightgray">
 					<p>
 						Head Office: 124/1, Industrial Estate Kot
 						<br/>
