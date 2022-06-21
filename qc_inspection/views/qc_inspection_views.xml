@@ -11,6 +11,7 @@
 						<button name="action_status" string="Confirm" type="object" class="oe_highlight">
 						</button>
 						<field name="status" widget="statusbar"/>
+<!--						<field name="status_bar" widget="statusbar"/>-->
 					</header>
 					<sheet>
 
