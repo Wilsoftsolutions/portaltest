@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError, UserError
+
 
 
 class QcInspection(models.Model):
@@ -13,7 +15,7 @@ class QcInspection(models.Model):
     purchase_order_id = fields.Many2one('purchase.order', string='Purchase Order',
                                         domain="[('invoice_status', '=', 'no'),('partner_id', '=', ' ')]")
     po_item_id = fields.Many2one('purchase.order.line', string='Article', domain="[('order_id', '=', ' ')]")
-    image = fields.Binary(string=' ', store=True)
+    image = fields.Binary(string=' ',)
     plan = fields.Integer(string=' ', readonly='True', store=True)
     article36 = fields.Integer(string=' ', readonly='True', store=True)
     article37 = fields.Integer(string=' ', readonly='True', store=True)
@@ -82,7 +84,22 @@ class QcInspection(models.Model):
     attch_ids = fields.Many2many('ir.attachment', 'ir_attach_rel', 'record_relation_id', 'attachment_id',
                                  string="Attachments",
                                  help="If any")
-    status = fields.Selection([('ready', 'Ready'), ('Confrimed', 'Confirmed')], default='ready')
+    status = fields.Selection(
+        [
+            ('ready', 'Ready'),
+            ('waiting_for_approval', 'Waiting For Approval'),
+            ('Confrimed', 'Confirmed')
+        ], default='ready')
+
+    def action_waiting_for_approval(self):
+        self.status = 'waiting_for_approval'
+
+    def unlink(self):
+        res = super(QcInspection, self).unlink()
+        raise UserError(_("You have No Access to Delete this Record!!!!! "))
+
+        return
+
 
     @api.onchange('vendor_id')
     def onchange_vendor_id(self):
@@ -141,7 +158,7 @@ class QcInspection(models.Model):
             articl46 = 0
             for rec in self:
                 for po in rec.po_item_id:
-                    rec.image = po.product_id.image_1920
+                    # rec.image = po.product_id.image_1920
                     rec.plan = po.product_qty * 12
                     for line in po.product_id.sh_bundle_product_ids:
 

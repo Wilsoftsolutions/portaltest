@@ -6,10 +6,11 @@
 			<field name="name">qc.inspect.form.view</field>
 			<field name="model">qc.inspection</field>
 			<field name="arch" type="xml">
-				<form string="Qc Inspection">
+				<form string="Qc Inspection" duplicate="false" delete="false">
 					<header>
-						<button name="action_status" string="Confirm" type="object" class="oe_highlight">
-						</button>
+						<button name="action_status" attrs="{'invisible': [('status', 'in', ['Confrimed','ready'])]}" string="Confirm" type="object" class="oe_highlight"/>
+						<button name="action_waiting_for_approval" attrs="{'invisible': [('status', 'in', ['Confrimed','waiting_for_approval'])]}" string="Send For Approval" type="object" class="oe_highlight"/>
+
 						<field name="status" widget="statusbar"/>
 <!--						<field name="status_bar" widget="statusbar"/>-->
 					</header>
@@ -71,7 +72,7 @@
 
 							<tr>
 								<td style="height:40px;width:80px;">
-									<field name="image" widget="image" force_save="True" readonly="1"/>
+									<field name="image" widget="image" force_save="True" readonly="True"/>
 								</td>
 								<td style="text-align:center">
 									<field name="plan" force_save="True"/>
